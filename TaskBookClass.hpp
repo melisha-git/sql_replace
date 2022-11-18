@@ -5,10 +5,12 @@
 #include <algorithm>
 #include <vector>
 #include <map>
+#include <sstream>
 
 class TaskBook {
 private:
-	std::vector<Task>	tasks_;
+	static std::vector<std::string> keyWords;
+	std::vector<Task>				tasks_;
 public:
 	//constructors
 	TaskBook();
@@ -17,7 +19,7 @@ public:
 	//methoods
 	void ADD(const std::string &);
 	void DONE(const std::string &);
-	//void DELETE(const std::string &);
+	void DELETE(const std::string &);
 	//operators
 	
 	//operator '='
@@ -26,6 +28,8 @@ public:
 	// destructors
 	~TaskBook();
 };
+
+std::vector<std::string> TaskBook::keyWords{"name", "description", "date", "category", "status"};
 
 #include "TaskBookClass.cpp"
 

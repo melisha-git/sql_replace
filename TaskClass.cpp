@@ -5,7 +5,7 @@
 
 // constructors
 
-Task::Task(std::string name, std::string description = std::string(), 
+Task::Task(std::string name = std::string(), std::string description = std::string(), 
 		std::string date = std::string(), std::string category = std::string(), bool status = false) :
 		name_(name), description_(description), date_(date), category_(category), status_(status) {}
 	
@@ -88,9 +88,7 @@ bool Task::operator>=(const Task &other) const {
 }
 
 //destructor
-Task::~Task() {
-	std::cout << "Task \'" << this->getName() << "\' is delete" << std::endl;
-}
+Task::~Task() {}
 
 // operator '<<'
 std::ostream& operator<<(std::ostream &os, const Task &task) {

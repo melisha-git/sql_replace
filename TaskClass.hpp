@@ -17,8 +17,6 @@ public:
     Task(const Task &);
     Task(std::string name, std::string description, 
 		std::string date, std::string category, bool status);
-	
-	Task() = delete;
     
     // gets and sets
     std::string getName() const;
