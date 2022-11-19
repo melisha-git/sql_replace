@@ -18,8 +18,9 @@ public:
 	
 	//methoods
 	void ADD(const std::string &);
-	void DONE(const std::string &);
-	void DELETE(const std::string &);
+	void DONE(const std::string &name);
+	void DELETE(const std::string &name);
+	void UPDATE(const std::string &);
 	//operators
 	
 	//operator '='
@@ -27,6 +28,8 @@ public:
 	
 	// destructors
 	~TaskBook();
+private:
+	Task _getTask(const std::string &);
 };
 
 std::vector<std::string> TaskBook::keyWords{"name", "description", "date", "category", "status"};
