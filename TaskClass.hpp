@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 #include <ostream>
+#include <map>
+#include <functional>
 
 class Task {
 private:
@@ -34,6 +36,9 @@ public:
     bool getStatus() const;
     void setStatus(bool);
     
+	std::string get(const std::string &key) const ;
+	void set(const std::string &key, const std::string &);
+	
 	//operators
 	
     //operator '='

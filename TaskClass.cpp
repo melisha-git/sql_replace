@@ -7,12 +7,13 @@
 
 Task::Task(std::string name = std::string(), std::string description = std::string(), 
 		std::string date = std::string(), std::string category = std::string(), bool status = false) :
-		name_(name), description_(description), date_(date), category_(category), status_(status) {}
+		name_(name), description_(description), date_(date), category_(category), status_(status) {
+		}
 	
 Task::Task(const Task &other) {
 	*this = other;
 }
-	
+
 // gets and sets
 std::string Task::getName() const {
 	return this->name_;
@@ -52,6 +53,16 @@ bool Task::getStatus() const {
 
 void Task::setStatus(bool status) {
 	this->status_ = status;
+}
+
+std::string Task::get(const std::string &key) const {
+	return key == "name" ? getName() : key == "description" ? getDescription() : 
+	key == "date" ? getDate() : key == "category" ? getCategory() : std::string();
+}
+
+void Task::set(const std::string &key, const std::string &word) {
+	return key == "name" ? setName(word) : key == "description" ? setDescription(word) : 
+	key == "date" ? setDate(word) : setCategory(word);
 }
 
 //operators
