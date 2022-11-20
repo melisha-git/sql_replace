@@ -7,6 +7,8 @@
 #include <map>
 #include <functional>
 
+// Класс - задача
+
 class Task {
 private:
     std::string	name_;
@@ -15,12 +17,12 @@ private:
     std::string	category_;
     bool		status_;
 public:
-    //constructors
+    //Конструкторы
     Task(const Task &);
     Task(std::string name, std::string description, 
 		std::string date, std::string category, bool status);
     
-    // gets and sets
+    // Гетеры и сетеры
     std::string getName() const;
     void setName(const std::string &);
     
@@ -36,26 +38,27 @@ public:
     bool getStatus() const;
     void setStatus(bool);
     
+	// Гет и Сет по названию парамеира
 	std::string get(const std::string &key) const ;
 	void set(const std::string &key, const std::string &);
 	
-	//operators
+	//Операторы
 	
-    //operator '='
+    //Оператор '='
     Task & operator=(const Task &);
     
-    //logic operators 
+    //Логические операторы сравнения
     bool operator<(const Task &) const;
     bool operator>(const Task &) const;
     bool operator==(const Task &) const;
     bool operator<=(const Task &) const;
     bool operator>=(const Task &) const;
     
-    //destructor
+    //Деструктор
     ~Task();
 };
 
-// operator <<
+// Оператор вывода в консоль
 std::ostream& operator<<(std::ostream &, const Task &);
 
 #include "TaskClass.cpp"

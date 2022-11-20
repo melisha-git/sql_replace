@@ -3,7 +3,7 @@
 
 #include "TaskClass.hpp"
 
-// constructors
+//Конструкторы
 
 Task::Task(std::string name = std::string(), std::string description = std::string(), 
 		std::string date = std::string(), std::string category = std::string(), bool status = false) :
@@ -14,7 +14,7 @@ Task::Task(const Task &other) {
 	*this = other;
 }
 
-// gets and sets
+// Гетеры и сетеры
 std::string Task::getName() const {
 	return this->name_;
 }
@@ -55,19 +55,21 @@ void Task::setStatus(bool status) {
 	this->status_ = status;
 }
 
+// Гет по ключевому названию параметра
 std::string Task::get(const std::string &key) const {
 	return key == "name" ? getName() : key == "description" ? getDescription() : 
 	key == "date" ? getDate() : key == "category" ? getCategory() : std::string();
 }
 
+// Сет по ключевому названию параметра
 void Task::set(const std::string &key, const std::string &word) {
 	return key == "name" ? setName(word) : key == "description" ? setDescription(word) : 
 	key == "date" ? setDate(word) : setCategory(word);
 }
 
-//operators
+//Операторы
 
-//operator '='
+//Оператор копирования
 Task& Task::operator=(const Task &other) {
 	this->name_ = other.getName();
 	this->description_ = other.getDescription();
@@ -77,7 +79,7 @@ Task& Task::operator=(const Task &other) {
 	return *this;
 }
 
-//logic operators 
+//Логические операторы сравнения
 bool Task::operator<(const Task &other) const {
 	return this->name_ < other.getName();
 }
@@ -98,15 +100,24 @@ bool Task::operator>=(const Task &other) const {
 	return this->name_ >= other.getName();
 }
 
-//destructor
+//Деструктор
 Task::~Task() {}
 
-// operator '<<'
+//Оператор вывода в консоль
 std::ostream& operator<<(std::ostream &os, const Task &task) {
-	std::string taskStr = task.getName() + " " + task.getDescription() + " " 
-	+ task.getDate() + " " + task.getCategory() + " ";
-	taskStr += task.getStatus() ? "on" : "off";
-	os << taskStr;
+	os.width(20);
+	os << task.getName() << "|";
+	os.width(20);
+	os << task.getDescription() << "|";
+	os.width(20);
+	os << task.getDate() << "|";
+	os.width(20);
+	os << task.getCategory() << "|";
+	os.width(20);
+	if (task.getStatus())
+		os << "on" << "|";
+	else
+		os << "off" << "|";
 	return os;
 }
 

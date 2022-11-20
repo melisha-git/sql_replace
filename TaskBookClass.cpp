@@ -2,10 +2,10 @@
 #define TASK_BOOK_CLASS_CPP
 #include "TaskBookClass.cpp"
 
-//constructors
+//Конструктор
 TaskBook::TaskBook() {}
 
-//methoods
+//Методы
 
 void TaskBook::ADD(const std::string &listTask) {
 	this->tasks_.push_back(this->_getTask(listTask));
@@ -48,20 +48,33 @@ void TaskBook::SELECT(const std::string &regex) {
 		std::string regexString = std::regex_replace(match.suffix().str(), std::regex("^[ ]*(.*?)[ ]*$"), "$1");
 		copy = _searchTask(copy, param, logic, regexString);
 	}
+	this->_printColumn();
 	for (const Task &t : copy) {
 		std::cout << t << std::endl;
 	}
 }
 
-//operators
-
-// destructors
-TaskBook::~TaskBook() {
-	/*for (Task t : this->tasks_) {
+void TaskBook::SELECT() const {
+	this->_printColumn();
+	std::vector<Task> copy = this->tasks_;
+	for (Task t : copy) {
 		std::cout << t << std::endl;
-	}*/
+	}
 }
 
+// Деструктор
+TaskBook::~TaskBook() {}
+
+// Функция метода вывода названий колонок
+void TaskBook::_printColumn() const {
+	for (std::string str : TaskBook::keyWords) {
+		std::cout.width(20);
+		std::cout << str << "|";
+	}
+	std::cout << std::endl;
+}
+
+// Создание новой задачи по параметрам
 Task TaskBook::_getTask(const std::string &listTask) {
 	Task task;
 	std::string line = std::string();
@@ -82,6 +95,7 @@ Task TaskBook::_getTask(const std::string &listTask) {
 	return task;
 }
 
+//Поиск всех задач, удовлетворяющих условию
 std::vector<Task> TaskBook::_searchTask(std::vector<Task> tasks, const std::string &param, const std::string &logic, const std::string &regex) {
 	std::vector<Task> result;
 	for (auto it = tasks.begin(); it != tasks.end(); ++it) {
@@ -102,6 +116,5 @@ std::vector<Task> TaskBook::_searchTask(std::vector<Task> tasks, const std::stri
 	}
 	return result;
 }
-
 
 #endif

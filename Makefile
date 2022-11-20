@@ -1,3 +1,6 @@
 all :
-	rm -rf *.ghc a.exe;
-	g++ main.cpp utils.hpp TaskClass.hpp TaskBookClass.hpp
+	rm -rf *.ghc sqlRep;
+	g++ main.cpp utils.hpp TaskClass.hpp TaskBookClass.hpp -o sqlRep
+	
+run :
+	./sqlRep
